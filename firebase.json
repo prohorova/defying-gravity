@@ -1,0 +1,9 @@
+{
+  "firebase": "pilot-app-test",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
