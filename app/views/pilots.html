@@ -1,0 +1,182 @@
+<div class='row'>
+  <div class='col-md-5 content'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <accordion close-others="onePanelAtATime">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title title">
+                <a href="" class="accordion-toggle">
+                  <span class="glyphicon glyphicon-info-sign pull-left" aria-hidden="true"></span>
+                  <h1>DEFYING GRAVITY</h1>
+                  <p>Connect and fly</p>
+                </a>
+              </h4>
+            </div>
+          </div>
+          <accordion-group is-open="isFirstPanelOpen">
+            <accordion-heading>
+              <span class="glyphicon glyphicon-search pull-left" aria-hidden="true"></span>
+              SEARCH
+            </accordion-heading>
+            <div class='search panel-content' ng-controller="SearchController">
+              <form name='search'>
+                <div class='form-group'>
+                  <input type='text' class='form-control' placeholder='Address' ng-model="searchParams.searchAddress"
+                         ng-autocomplete options=searchParams.searchAddressOptions details=searchParams.searchAddressDetails>
+                </div>
+
+                <div class='form-group'>
+                  <select class='form-control' ng-model="searchParams.searchAreaRadius"
+                          ng-options="searchArea.valueInMeters as searchArea.name for searchArea in areasOfSearch">
+                  </select>
+                </div>
+
+                <div class='pull-right button-group'>
+                  <button type='button' class='btn btn-default' ng-click="reset()">RESET</button>
+                  <button type='button' class='btn btn-primary' ng-disabled="isSearchButtonDisabled()" ng-click="searchPilots(searchAddressDetails)">SEARCH</button>
+                </div>
+
+              </form>
+            </div>
+          </accordion-group>
+
+          <accordion-group>
+            <accordion-heading>
+              <span class="glyphicon glyphicon-filter"></span>                         FILTER
+            </accordion-heading>
+            <div class='filter panel-content' ng-controller="FilterController">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <div class="radio">
+                    <label class='radio'><input type='radio' ng-model="type" ng-value="" value="">All</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type='radio' ng-model="type" ng-value="types.PERSONAL">Personal</label>
+                  </div>
+                  <div class="radio">
+                    <label class='radio'><input type='radio' ng-model="type" ng-value="types.BUSINESS">Business</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label" for="filter-category">Aircraft category</label>
+                  <div class="col-md-9">
+                    <select class="form-control" id="filter-category" ng-model="category" ng-options="category for category in aircraftCategories">
+                      <option value=""></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="pull-right button-group">
+                  <button type="button" class="btn btn-default" ng-click="reset()">RESET</button>
+                </div>
+              </form>
+            </div>
+          </accordion-group>
+
+          <accordion-group>
+            <accordion-heading>
+              <span class="glyphicon glyphicon-plus"></span>
+              ADD
+            </accordion-heading>
+            <div class='add panel-content' ng-controller="AddPilotController">
+              <form class="form-horizontal" name='addPilot'>
+                <div class="form-group">
+                  <div class="radio">
+                    <label><input type='radio' ng-model="pilotData.type" ng-value="types.PERSONAL">Personal</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type='radio' ng-model="pilotData.type" ng-value="types.BUSINESS">Business</label>
+                  </div>
+                </div>
+                <div class='form-group'>
+                  <label for="add-name" class="col-md-3 control-label">Name<span class="mandatory">*</span> </label>
+                  <div class="col-md-9">
+                    <input type='text' class='form-control' name="name" id="add-name" ng-model="pilotData.name" required>
+                  </div>
+                </div>
+                <div class='form-group'>
+                  <label class="col-md-3 control-label" for="add-ratings">Pilot ratings</label>
+                  <div class="col-md-9">
+                    <input type='text' class='form-control' id="add-ratings" ng-model="pilotData.ratings">
+                  </div>
+                </div>
+                <div class='form-group'>
+                  <label class="col-md-3 control-label" for="add-location">Location
+                    <span class="mandatory">*</span>
+                  </label>
+                  <div class="col-md-9">
+                    <input type='text' class='form-control' id="add-location" name="address" ng-model="pilotAddress"
+                           placeholder="" ng-autocomplete details=pilotAddressDetails required>
+                  </div>
+                </div>
+                <div class='form-group'>
+                  <label class="col-md-3 control-label" for="add-category">Aircraft category</label>
+                  <div class="col-md-9">
+                    <select class='form-control' id="add-category" ng-model="pilotData.category" ng-options="category for category in aircraftCategories">
+                    </select>
+                  </div>
+                </div>
+                <div class='form-group'>
+                  <label class="col-md-3 control-label" for="add-info">More about you</label>
+                  <div class="col-md-9">
+                    <textarea type='text' class='form-control' id="add-info" ng-model="pilotData.info"></textarea>
+                  </div>
+                </div>
+                <div class='form-group'>
+                  <label class="col-md-3 control-label" for="add-contact">Contact info<span class="mandatory">*</span></label>
+                  <div class="col-md-9">
+                    <select id="add-contact" class="form-control" name="contactType" ng-model="pilotContactInfos[0].type" ng-options="contactInfoType as contactInfoType for contactInfoType in contactInfoTypes" required></select>
+                    <input ng-show="pilotContactInfos[0].type" type="text" class="form-control" name="contact" ng-model="pilotContactInfos[0].value" required>
+                  </div>
+                </div>
+                <div class='form-group'>
+                  <label class="col-md-3 control-label" for="add-contact2">Contact info 2</label>
+                  <div class="col-md-9">
+                    <select id="add-contact2" class="form-control" name="contactType" ng-model="pilotContactInfos[1].type" ng-options="contactInfoType as contactInfoType for contactInfoType in contactInfoTypes"></select>
+                    <input ng-show="pilotContactInfos[1].type" type="text" class="form-control" name="contact" ng-model="pilotContactInfos[1].value">
+                  </div>
+                </div>
+                <div class='pull-right button-group'>
+                  <button type='button' class='btn btn-default' ng-click="reset()">Reset</button>
+                  <button type='button' class='btn btn-primary'
+                          ng-disabled="isSaveButtonDisabled(addPilot)"
+                          ng-click="save()">Save</button>
+                </div>
+              </form>
+            </div>
+          </accordion-group>
+
+          <accordion-group is-disabled="isPilotsListDisabled()">
+            <accordion-heading>
+              <span class="glyphicon glyphicon-align-justify"></span>
+              SHOW LIST
+              <div class="pull-right" ng-if="pilotsLoaded">{{getPilotsCountMessage()}}</div>
+            </accordion-heading>
+            <div class="pilots-list panel-content">
+              <accordion>
+                <accordion-group ng-repeat="pilot in pilots" is-open="open">
+                  <accordion-heading>
+                    <span class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': open, 'glyphicon-chevron-right': !open}"></span>
+                    {{pilot.name}}
+                  </accordion-heading>
+                  <div>
+                    <p><b>Type:</b> {{pilot.type}}</p>
+                    <p ng-if="pilot.ratings"><b>Ratings:</b> {{pilot.ratings}}</p>
+                    <p ng-if="pilot.location"><b>Location:</b> {{pilot.location}}</p>
+                    <p ng-if="pilot.category"><b>Category:</b> {{pilot.category}}</p>
+                    <p ng-if="pilot.info"><b>Additional information:</b> {{pilot.info}}</p>
+                    <p ng-repeat="contact in pilot.contacts"><b>{{contact.type}}:</b> {{contact.value}}</p>
+                  </div>
+                </accordion-group>
+
+              </accordion>
+            </div>
+          </accordion-group>
+        </accordion>
+      </div>
+    </div>
+  </div>
+  <div class="map-wrapper">
+    <div id="map"></div>
+  </div>
+</div>
