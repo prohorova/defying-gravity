@@ -20,7 +20,12 @@
     "bootswatch-dist": {
       "main": [
         "css/bootstrap.css",
-        "js/bootstrap.js"
+        "js/bootstrap.js",
+        "fonts/glyphicons-halflings-regular.woff",
+        "fonts/glyphicons-halflings-regular.woff2",
+        "fonts/glyphicons-halflings-regular.ttf",
+        "fonts/glyphicons-halflings-regular.eot",
+        "fonts/glyphicons-halflings-regular.svg"
       ]
     }
   },
