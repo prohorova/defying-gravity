@@ -3,9 +3,9 @@
 (function() {
     angular.module('defyingGravityApp')
 
-        .service('PilotService', ["$http", "$q", "$firebaseArray", "firebaseUrl", "GoogleMapService",
-            function($http, $q, $firebaseArray, firebaseUrl, GoogleMapService) {
-            var firebaseRef = new Firebase(firebaseUrl),
+        .service('PilotService',
+            function($http, $q, $firebaseArray, FirebaseService, GoogleMapService) {
+            var firebaseRef = FirebaseService.getFirebaseRef(),
                 pilotsRef = firebaseRef.child('pilots'),
                 pilots = $firebaseArray(pilotsRef);
             return {
@@ -24,7 +24,6 @@
             function getPilots() {
                 var deferred = $q.defer();
                 pilots.$loaded().then(function() {
-                  console.log(pilots);
                     deferred.resolve(pilots);
                 });
                 return deferred.promise;
@@ -75,5 +74,5 @@
                 });
                 return filteredPilots;
             }
-        }]);
+        });
 })();

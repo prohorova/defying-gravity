@@ -1,5 +1,7 @@
+'use strict';
+
 angular.module('defyingGravityApp')
-  .controller('SearchController', ["$scope", "GeolocationService", "PilotService", "GoogleMapService",
+  .controller('SearchController',
     function($scope, GeolocationService, PilotService, GoogleMapService) {
 
       $scope.searchParams = {
@@ -60,4 +62,4 @@ angular.module('defyingGravityApp')
         GoogleMapService.removeSearchArea();
         $scope.getAllPilots();
       }
-    }]);
+    });

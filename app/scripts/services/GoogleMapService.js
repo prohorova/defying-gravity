@@ -1,9 +1,8 @@
 'use strict';
 
-
 angular.module('defyingGravityApp')
 
-  .factory("GoogleMapService", ["defaultGeolocation", "mapId",
+  .factory("GoogleMapService",
     function (defaultGeolocation, mapId) {
       var map,
         markerCluster,
@@ -83,7 +82,7 @@ angular.module('defyingGravityApp')
       }
 
       function fitBounds() {
-        map.fitBounds(markerCluster.getExtendedBounds(bounds));
+        map.fitBounds(bounds);
       }
 
       function setMarkers(pilots) {
@@ -133,5 +132,5 @@ angular.module('defyingGravityApp')
         removeElement(searchMarker);
         removeElement(searchCircle);
       }
-    }]);
+    });
 

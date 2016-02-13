@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('defyingGravityApp')
-  .controller('PilotsController', ["$scope", "GoogleMapService", "PilotService",
+  .controller('PilotsController',
     function($scope, GoogleMapService, PilotService) {
       $scope.pilots = [];
 
@@ -49,4 +49,4 @@ angular.module('defyingGravityApp')
         $scope.pilots = data;
         GoogleMapService.setMarkers($scope.pilots);
       }
-    }]);
+    });

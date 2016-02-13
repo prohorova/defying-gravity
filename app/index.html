@@ -38,11 +38,22 @@
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li ui-sref-active="active"><a href data-ui-sref="pilots">Pilots</a></li>
-              <li ui-sref-active="active"><a href data-ui-sref="about">About</a></li>
+              <li ui-sref-active="active"><a href ui-sref="pilots">Pilots</a></li>
+              <li ui-sref-active="active"><a href ui-sref="about">About</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href>Log in</a></li>
+            <ul class="nav navbar-nav navbar-right" ng-controller="UserController">
+              <li ng-hide="isLoggedIn()"><a href ng-click="openLoginModal()">Log in</a></li>
+              <li ng-if="isLoggedIn()" class="dropdown user-preview">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <div class="avatar"><img ng-src={{userData.profileImgUrl}}></div>
+                  {{userData.name}}
+                  <span class="caret"></span>
+                </a>
+                <ul role="menu" class="dropdown-menu">
+                  <li><a href ui-sref="profile">Profile</a></li>
+                  <li><a href ng-click="logout()">Log out</a></li>
+                </ul>
+              </li>
             </ul>
           </div>
         </div>
@@ -72,9 +83,14 @@
     <script src="scripts/config.js"></script>
     <script src="scripts/routes.js"></script>
     <script src="scripts/services/constants.js"></script>
-    <script src="scripts/services/GeolocationService.js"></script>
-    <script src="scripts/services/GoogleMapService.js"></script>
-    <script src="scripts/services/PilotService.js"></script>
+    <script src="scripts/services/firebaseService.js"></script>
+    <script src="scripts/services/authService.js"></script>
+    <script src="scripts/services/geolocationService.js"></script>
+    <script src="scripts/services/googleMapService.js"></script>
+    <script src="scripts/services/pilotService.js"></script>
+    <script src="scripts/controllers/loginController.js"></script>
+    <script src="scripts/controllers/profileController.js"></script>
+    <script src="scripts/controllers/userController.js"></script>
     <script src="scripts/controllers/pilotsController.js"></script>
     <script src="scripts/controllers/filterController.js"></script>
     <script src="scripts/controllers/searchController.js"></script>

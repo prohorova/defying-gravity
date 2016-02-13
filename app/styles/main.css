@@ -11,7 +11,7 @@ body {
 
 .header {
   position: relative;
-  z-index: 9999;
+  z-index: 4;
 }
 
 .navbar-brand {
@@ -22,7 +22,80 @@ body {
   width: 80px;
 }
 
-/* main */
+.user-preview .dropdown-toggle {
+  height: 64px;
+}
+
+.avatar {
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+  height: 30px;
+  width: 30px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.avatar img {
+  height: 30px;
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+}
+
+/* login */
+
+.login-form {
+  background-color: #fff;
+  max-width: 330px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.modal-login .btn img {
+  width: 40px;
+  float: left;
+}
+
+.modal-login .btn span {
+  line-height: 40px;
+}
+
+.facebook {
+  background-color: #22407F;
+}
+
+.facebook:hover, .facebook:active {
+  background-color: #092766;
+}
+
+.twitter {
+  background-color: #3cf;
+}
+
+.twitter:hover, .twitter:active {
+  background-color: #00b9ed;
+}
+
+.google {
+  background-color: #dd4b39;
+}
+
+.google:hover, .google:active {
+  background-color: #C43220;
+}
+
+.login-form .info {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* pilots */
 
 h1 {
   color: #0a6ebd;

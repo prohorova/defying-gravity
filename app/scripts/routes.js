@@ -13,4 +13,9 @@ angular
       url: '/about',
       templateUrl: 'views/about.html'
     })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'views/profile.html',
+      controller: 'ProfileController'
+    })
 });

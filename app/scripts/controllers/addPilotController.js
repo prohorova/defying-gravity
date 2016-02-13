@@ -1,5 +1,7 @@
+'use strict';
+
 angular.module('defyingGravityApp')
-  .controller('AddPilotController', ["$scope", "$rootScope", "GoogleMapService", "PilotService", "types", "aircraftCategories", 'Notification',
+  .controller('AddPilotController',
     function($scope, $rootScope, GoogleMapService, PilotService, types, aircraftCategories, Notification) {
 
       $scope.types = types;
@@ -57,4 +59,4 @@ angular.module('defyingGravityApp')
         resetPilotData();
         Notification.success('New address added to map');
       }
-    }]);
+    });

@@ -1,5 +1,7 @@
+'use strict';
+
 angular.module('defyingGravityApp')
-  .controller('FilterController', ["$scope", "types", "aircraftCategories", "PilotService",
+  .controller('FilterController',
     function($scope, types, aircraftCategories, PilotService) {
 
       $scope.types = types;
@@ -24,4 +26,4 @@ angular.module('defyingGravityApp')
           $scope.setPilots(PilotService.filterPilots($scope.type, $scope.category));
         }
       });
-    }]);
+    });

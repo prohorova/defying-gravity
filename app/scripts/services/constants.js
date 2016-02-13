@@ -5,6 +5,12 @@ angular.module('defyingGravityApp')
 
   .value("defaultGeolocation", {lat: 36.2490413, lng: -113.7048059})
 
+  .value('providers', {
+    'TWITTER': 'twitter',
+    'FACEBOOK': 'facebook',
+    'GOOGLE': 'google'
+  })
+
   .value('mapId', 'map')
 
   .value('types', {

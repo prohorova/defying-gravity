@@ -2,7 +2,7 @@
 
 angular.module('defyingGravityApp')
 
-  .factory("GeolocationService", ["$q", "$rootScope", function ($q, $rootScope) {
+  .factory("GeolocationService", function ($q, $rootScope) {
     return {
       getCurrentGeolocation: getCurrentGeolocation
     };
@@ -27,4 +27,4 @@ angular.module('defyingGravityApp')
       }
       return deferred.promise;
     }
-  }]);
+  });

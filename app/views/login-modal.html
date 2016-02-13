@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$close()">
+    <span aria-hidden="true">×</span>
+    <span class="sr-only">Close</span>
+  </button>
+</div>
+<div class="modal-body modal-login">
+  <button type="button" class="btn btn-primary btn-block facebook" ng-click="login(providers.FACEBOOK)">
+    <img src="images/facebook.png"/>
+    <span>Log in with facebook</span>
+  </button>
+  <button type="button" class="btn btn-primary btn-block twitter" ng-click="login(providers.TWITTER)">
+    <img src="images/twitter.png"/>
+    <span>Log in with twitter</span>
+  </button>
+  <button type="button" class="btn btn-primary btn-block google" ng-click="login(providers.GOOGLE)">
+    <img src="images/google.png"/>
+    <span>Log in with google+</span>
+  </button>
+</div>
