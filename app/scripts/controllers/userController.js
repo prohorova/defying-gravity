@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('defyingGravityApp')
-  .controller('UserController', function($scope, $modal, $timeout, AuthService) {
+  .controller('UserController', function($scope, $modal, $timeout, AuthService, Notification) {
 
     $scope.openLoginModal = openLoginModal;
     $scope.logout = logout;
@@ -17,14 +17,14 @@ angular.module('defyingGravityApp')
 
     function logout() {
       AuthService.logout();
-      $scope.userData = null;
+      Notification.success('You have logged out');
     }
 
     function isLoggedIn() {
       return AuthService.isLoggedIn();
     }
 
-    $scope.$on('userDataChanged', function() {
+    $scope.$on('userChanged', function() {
       $scope.userData = AuthService.getUserData();
     });
 

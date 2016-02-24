@@ -21,7 +21,7 @@ angular.module('defyingGravityApp')
 
       function activate() {
         GoogleMapService.initMap();
-        $scope.pilots = PilotService.getPilots().then(function(pilots) {
+        PilotService.loadPilots().then(function(pilots) {
           setPilots(pilots);
           $scope.pilotsLoaded = true;
         });
@@ -49,4 +49,5 @@ angular.module('defyingGravityApp')
         $scope.pilots = data;
         GoogleMapService.setMarkers($scope.pilots);
       }
+
     });

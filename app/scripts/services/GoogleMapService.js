@@ -7,7 +7,6 @@ angular.module('defyingGravityApp')
       var map,
         markerCluster,
         pilotMarkerInfoWindow,
-        searchMarker,
         searchCircle,
         bounds;
       return {
@@ -70,14 +69,26 @@ angular.module('defyingGravityApp')
         if (pilot.category) {
           contentString += "<p><b>Category: </b>" + pilot.category + "</p>";
         }
-        if (pilot.info) {
-          contentString += "<p><b>Information: </b>" + pilot.info + "</p>";
+        if (pilot.email) {
+          contentString += "<p><b>Email: </b><a href='mailto:"+ pilot.email + "'>" + pilot.email + "</a></p>";
         }
-        if (pilot.contacts && pilot.contacts.length) {
-          pilot.contacts.forEach(function (contact) {
-            contentString += "<p><b>" + contact.type + ": </b>" + contact.value + "</p>";
-          });
+        if (pilot.phone) {
+          contentString += "<p><b>Phone: </b><a href='skype:" + pilot.phone + "?call'>" + pilot.phone + "</a></p>";
         }
+        if (pilot.skype) {
+          contentString += "<p><b>Skype: </b><a href='skype:" + pilot.skype + "?call'>" + pilot.skype + "</a></p>";
+        }
+        if (pilot.facebook) {
+          contentString += "<p><b>Facebook: </b>" + pilot.facebook + "</p>";
+        }
+        if (pilot.twitter) {
+          contentString += "<p><b>Twitter: </b>" + pilot.twitter + "</p>";
+        }
+        if (pilot.instagram) {
+          contentString += "<p><b>Information: </b>" + pilot.instagram + "</p>";
+        }
+
+
         return contentString;
       }
 
@@ -97,11 +108,6 @@ angular.module('defyingGravityApp')
       }
 
       function setSearchArea(position, radius) {
-        searchMarker = new google.maps.Marker({
-          position: position,
-          icon: 'assets/img/icon5.png',
-          map: map
-        });
         searchCircle = new google.maps.Circle({
           strokeColor: '#4CC9FF',
           strokeOpacity: 0.8,
@@ -129,7 +135,6 @@ angular.module('defyingGravityApp')
       }
 
       function removeSearchArea() {
-        removeElement(searchMarker);
         removeElement(searchCircle);
       }
     });

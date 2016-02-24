@@ -3,15 +3,16 @@ html, body {
   width: 100%;
 }
 
-body {
- background-color: #eeeeee;
-}
-
 /* header */
 
 .header {
   position: relative;
+  margin-bottom: 20px;
   z-index: 4;
+}
+
+.navbar {
+  margin-bottom: 0;
 }
 
 .navbar-brand {
@@ -45,6 +46,12 @@ body {
   left: -9999px;
   right: -9999px;
   margin: auto;
+}
+
+.navbar-info {
+  background-color: #eeeeee;
+  height: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);;
 }
 
 /* login */
@@ -95,12 +102,15 @@ body {
   text-align: center;
 }
 
-/* pilots */
+/* main */
 
 h1 {
   color: #0a6ebd;
   font-size: 15px;
   font-weight: bold;
+}
+
+.content h1 {
   display: inline-block;
   margin: 0;
 }
@@ -113,7 +123,7 @@ p {
   color: #f00;
 }
 
-.form-horizontal .control-label {
+.filter .control-label {
   text-align: left;
   padding-left: 0;
 }
@@ -259,6 +269,32 @@ input.form-control, select.form-control {
 }
 .title p {
   margin: 5px 20px 0;
+}
+
+/* profile */
+
+.profile .tab-pane {
+  margin-top: 20px;
+}
+
+/* pin locations */
+
+.places td {
+  vertical-align: middle !important;
+}
+
+.places .add {
+  vertical-align: bottom !important;
+}
+
+/* about */
+
+.about h1 {
+  margin-left: 15px;
+}
+
+.about .photo {
+  text-align: center;
 }
 
 @media (max-width: 1000px) {

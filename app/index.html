@@ -20,7 +20,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="header">
+    <div class="header" ng-controller="UserController" ng-cloak>
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -41,21 +41,26 @@
               <li ui-sref-active="active"><a href ui-sref="pilots">Pilots</a></li>
               <li ui-sref-active="active"><a href ui-sref="about">About</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" ng-controller="UserController">
-              <li ng-hide="isLoggedIn()"><a href ng-click="openLoginModal()">Log in</a></li>
+            <ul class="nav navbar-nav navbar-right">
+              <li ng-hide="isLoggedIn()"><a href ng-click="openLoginModal()">Sign in</a></li>
               <li ng-if="isLoggedIn()" class="dropdown user-preview">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <div class="avatar"><img ng-src={{userData.profileImgUrl}}></div>
-                  {{userData.name}}
+                  {{userData.login}}
                   <span class="caret"></span>
                 </a>
                 <ul role="menu" class="dropdown-menu">
                   <li><a href ui-sref="profile">Profile</a></li>
-                  <li><a href ng-click="logout()">Log out</a></li>
+                  <li><a href ng-click="logout()">Logout</a></li>
                 </ul>
               </li>
             </ul>
           </div>
+        </div>
+      </div>
+      <div class="navbar-info" ng-if="!isLoggedIn()">
+        <div class="container text-center">
+          Sign in to add yourself to the map
         </div>
       </div>
     </div>
@@ -74,6 +79,7 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/bootswatch-dist/js/bootstrap.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -85,6 +91,7 @@
     <script src="scripts/services/constants.js"></script>
     <script src="scripts/services/firebaseService.js"></script>
     <script src="scripts/services/authService.js"></script>
+    <script src="scripts/services/userService.js"></script>
     <script src="scripts/services/geolocationService.js"></script>
     <script src="scripts/services/googleMapService.js"></script>
     <script src="scripts/services/pilotService.js"></script>
@@ -94,7 +101,7 @@
     <script src="scripts/controllers/pilotsController.js"></script>
     <script src="scripts/controllers/filterController.js"></script>
     <script src="scripts/controllers/searchController.js"></script>
-    <script src="scripts/controllers/addPilotController.js"></script>
+    <script src="scripts/controllers/placesController.js"></script>
     <!-- endbuild -->
 </body>
 </html>

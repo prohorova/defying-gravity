@@ -16,6 +16,25 @@ angular
     .state('profile', {
       url: '/profile',
       templateUrl: 'views/profile.html',
-      controller: 'ProfileController'
+      requiresLogin: true
     })
+})
+
+.run(function($rootScope, $state, AuthService) {
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
+    if (toState.requiresLogin && !AuthService.isLoggedIn()) {
+      event.preventDefault();
+      if (fromState.name) {
+        $state.transitionTo(fromState.name);
+      } else {
+        $state.transitionTo('pilots');
+      }
+    }
+  });
+
+  $rootScope.$on('userChanged', function() {
+    if (!AuthService.isLoggedIn() && $state.current.requiresLogin) {
+      $state.transitionTo('pilots');
+    }
+  });
 });

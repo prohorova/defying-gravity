@@ -73,79 +73,6 @@
             </div>
           </accordion-group>
 
-          <accordion-group>
-            <accordion-heading>
-              <span class="glyphicon glyphicon-plus"></span>
-              ADD
-            </accordion-heading>
-            <div class='add panel-content' ng-controller="AddPilotController">
-              <form class="form-horizontal" name='addPilot'>
-                <div class="form-group">
-                  <div class="radio">
-                    <label><input type='radio' ng-model="pilotData.type" ng-value="types.PERSONAL">Personal</label>
-                  </div>
-                  <div class="radio">
-                    <label><input type='radio' ng-model="pilotData.type" ng-value="types.BUSINESS">Business</label>
-                  </div>
-                </div>
-                <div class='form-group'>
-                  <label for="add-name" class="col-md-3 control-label">Name<span class="mandatory">*</span> </label>
-                  <div class="col-md-9">
-                    <input type='text' class='form-control' name="name" id="add-name" ng-model="pilotData.name" required>
-                  </div>
-                </div>
-                <div class='form-group'>
-                  <label class="col-md-3 control-label" for="add-ratings">Pilot ratings</label>
-                  <div class="col-md-9">
-                    <input type='text' class='form-control' id="add-ratings" ng-model="pilotData.ratings">
-                  </div>
-                </div>
-                <div class='form-group'>
-                  <label class="col-md-3 control-label" for="add-location">Location
-                    <span class="mandatory">*</span>
-                  </label>
-                  <div class="col-md-9">
-                    <input type='text' class='form-control' id="add-location" name="address" ng-model="pilotAddress"
-                           placeholder="" ng-autocomplete details=pilotAddressDetails required>
-                  </div>
-                </div>
-                <div class='form-group'>
-                  <label class="col-md-3 control-label" for="add-category">Aircraft category</label>
-                  <div class="col-md-9">
-                    <select class='form-control' id="add-category" ng-model="pilotData.category" ng-options="category for category in aircraftCategories">
-                    </select>
-                  </div>
-                </div>
-                <div class='form-group'>
-                  <label class="col-md-3 control-label" for="add-info">More about you</label>
-                  <div class="col-md-9">
-                    <textarea type='text' class='form-control' id="add-info" ng-model="pilotData.info"></textarea>
-                  </div>
-                </div>
-                <div class='form-group'>
-                  <label class="col-md-3 control-label" for="add-contact">Contact info<span class="mandatory">*</span></label>
-                  <div class="col-md-9">
-                    <select id="add-contact" class="form-control" name="contactType" ng-model="pilotContactInfos[0].type" ng-options="contactInfoType as contactInfoType for contactInfoType in contactInfoTypes" required></select>
-                    <input ng-show="pilotContactInfos[0].type" type="text" class="form-control" name="contact" ng-model="pilotContactInfos[0].value" required>
-                  </div>
-                </div>
-                <div class='form-group'>
-                  <label class="col-md-3 control-label" for="add-contact2">Contact info 2</label>
-                  <div class="col-md-9">
-                    <select id="add-contact2" class="form-control" name="contactType" ng-model="pilotContactInfos[1].type" ng-options="contactInfoType as contactInfoType for contactInfoType in contactInfoTypes"></select>
-                    <input ng-show="pilotContactInfos[1].type" type="text" class="form-control" name="contact" ng-model="pilotContactInfos[1].value">
-                  </div>
-                </div>
-                <div class='pull-right button-group'>
-                  <button type='button' class='btn btn-default' ng-click="reset()">Reset</button>
-                  <button type='button' class='btn btn-primary'
-                          ng-disabled="isSaveButtonDisabled(addPilot)"
-                          ng-click="save()">Save</button>
-                </div>
-              </form>
-            </div>
-          </accordion-group>
-
           <accordion-group is-disabled="isPilotsListDisabled()">
             <accordion-heading>
               <span class="glyphicon glyphicon-align-justify"></span>
@@ -165,7 +92,12 @@
                     <p ng-if="pilot.location"><b>Location:</b> {{pilot.location}}</p>
                     <p ng-if="pilot.category"><b>Category:</b> {{pilot.category}}</p>
                     <p ng-if="pilot.info"><b>Additional information:</b> {{pilot.info}}</p>
-                    <p ng-repeat="contact in pilot.contacts"><b>{{contact.type}}:</b> {{contact.value}}</p>
+                    <p ng-if="pilot.email"><b>Email:</b> <a href="mailto:{{pilot.email}}">{{pilot.email}}</a></p>
+                    <p ng-if="pilot.phone"><b>Phone:</b> <a href="skype:{{pilot.phone}}?call">{{pilot.phone}}</a></p>
+                    <p ng-if="pilot.skype"><b>Skype:</b> <a href="skype:{{pilot.skype}}?call">{{pilot.skype}}</a></p>
+                    <p ng-if="pilot.facebook"><b>Facebook:</b>{{pilot.facebook}}</p>
+                    <p ng-if="pilot.twitter"><b>Twitter:</b> {{pilot.twitter}}</p>
+                    <p ng-if="pilot.instagram"><b>Instagram:</b> {{pilot.instagram}}</p>
                   </div>
                 </accordion-group>
 
