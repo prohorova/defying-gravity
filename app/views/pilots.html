@@ -81,26 +81,31 @@
             </accordion-heading>
             <div class="pilots-list panel-content">
               <accordion>
-                <accordion-group ng-repeat="pilot in pilots" is-open="open">
+                <accordion-group ng-repeat="(id, user) in users" is-open="open">
                   <accordion-heading>
                     <span class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': open, 'glyphicon-chevron-right': !open}"></span>
-                    {{pilot.name}}
+                    {{user.profile.name}}
                   </accordion-heading>
                   <div>
-                    <p><b>Type:</b> {{pilot.type}}</p>
-                    <p ng-if="pilot.ratings"><b>Ratings:</b> {{pilot.ratings}}</p>
-                    <p ng-if="pilot.location"><b>Location:</b> {{pilot.location}}</p>
-                    <p ng-if="pilot.category"><b>Category:</b> {{pilot.category}}</p>
-                    <p ng-if="pilot.info"><b>Additional information:</b> {{pilot.info}}</p>
-                    <p ng-if="pilot.email"><b>Email:</b> <a href="mailto:{{pilot.email}}">{{pilot.email}}</a></p>
-                    <p ng-if="pilot.phone"><b>Phone:</b> <a href="skype:{{pilot.phone}}?call">{{pilot.phone}}</a></p>
-                    <p ng-if="pilot.skype"><b>Skype:</b> <a href="skype:{{pilot.skype}}?call">{{pilot.skype}}</a></p>
-                    <p ng-if="pilot.facebook"><b>Facebook:</b>{{pilot.facebook}}</p>
-                    <p ng-if="pilot.twitter"><b>Twitter:</b> {{pilot.twitter}}</p>
-                    <p ng-if="pilot.instagram"><b>Instagram:</b> {{pilot.instagram}}</p>
+                    <p><b>Type:</b> {{user.profile.type}}</p>
+                    <p ng-if="user.profile.ratings"><b>Ratings:</b> {{user.profile.ratings}}</p>
+                    <p ng-if="user.profile.category"><b>Category:</b> {{user.profile.category}}</p>
+                    <p ng-if="user.profile.information"><b>Additional information:</b> {{user.profile.information}}</p>
+                    <p ng-if="user.profile.email"><b>Email:</b> <a href="mailto:{{user.profile.email}}">{{user.profile.email}}</a></p>
+                    <p ng-if="user.profile.phone"><b>Phone:</b> <a href="skype:{{user.profile.phone}}?call">{{user.profile.phone}}</a></p>
+                    <p ng-if="user.profile.skype"><b>Skype:</b> <a href="skype:{{user.profile.skype}}?call">{{user.profile.skype}}</a></p>
+                    <p ng-if="user.profile.facebook"><b>Facebook:</b>{{user.profile.facebook}}</></p>
+                    <p ng-if="user.profile.twitter"><b>Twitter:</b> {{user.profile.twitter}}</p>
+                    <p ng-if="user.profile.instagram"><b>Instagram:</b> {{user.profile.instagram}}</p>
+                      <p><b>Places:</b></p>
+                      <ul>
+                        <li ng-repeat="place in user.places">
+                          {{place.location}}
+                        </li>
+                      </ul>
+                    <a ng-href=#/messages/{{user.id}}>SEND MESSAGE</a>
                   </div>
                 </accordion-group>
-
               </accordion>
             </div>
           </accordion-group>

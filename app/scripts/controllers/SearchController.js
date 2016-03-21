@@ -2,7 +2,7 @@
 
 angular.module('defyingGravityApp')
   .controller('SearchController',
-    function($scope, GeolocationService, PilotService, GoogleMapService) {
+    function($scope, PilotsService, GoogleMapService) {
 
       $scope.searchParams = {
         searchAddress: undefined,
@@ -51,7 +51,7 @@ angular.module('defyingGravityApp')
 
       function searchPilotsByPosition(position, radius) {
         GoogleMapService.removeSearchArea();
-        $scope.setPilots(PilotService.findPilotsInArea(position, radius));
+        $scope.setPilots(PilotsService.findPilotsInArea(position, radius));
         GoogleMapService.setSearchArea(position, radius);
       }
 

@@ -2,15 +2,16 @@
 
 angular.module('defyingGravityApp')
   .controller('PilotsController',
-    function($scope, GoogleMapService, PilotService) {
+    function($scope, GoogleMapService, PilotsService) {
       $scope.pilots = [];
-
+      $scope.users = {};
       $scope.onePanelAtATime = true;
       $scope.isFirstPanelOpen = false;
       $scope.showPilotsList = false;
       $scope.isAddPanelOpen = false;
       $scope.pilotsLoaded = false;
 
+      $scope.groupByUsers = groupByUsers;
       $scope.getAllPilots = getAllPilots;
       $scope.getPilotsCountMessage = getPilotsCountMessage;
       $scope.isPilotsListDisabled = isPilotsListDisabled;
@@ -21,14 +22,28 @@ angular.module('defyingGravityApp')
 
       function activate() {
         GoogleMapService.initMap();
-        PilotService.loadPilots().then(function(pilots) {
+        PilotsService.loadPilots().then(function(pilots) {
           setPilots(pilots);
+          groupByUsers();
           $scope.pilotsLoaded = true;
         });
       }
 
+      function groupByUsers() {
+        var users = {};
+        _.forEach($scope.pilots, function(pilot) {
+            if (users[pilot.id]) {
+              users[pilot.id].places.push(pilot.place);
+            } else {
+              users[pilot.id] = {profile: pilot.profile, places: [pilot.place],
+                  notRealUser: pilot.notRealUser};
+            }
+        });
+        $scope.users = users;
+      }
+
       function getAllPilots() {
-        PilotService.getPilots().then(function(data) {
+        PilotsService.getPilots().then(function(data) {
           setPilots(data);
         });
       }

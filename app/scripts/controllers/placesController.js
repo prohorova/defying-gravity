@@ -2,7 +2,7 @@
 
 angular.module('defyingGravityApp')
   .controller('PlacesController',
-    function($scope, PilotService, Notification) {
+    function($scope, PlacesService, Notification) {
 
       $scope.showPlaceEditor = false;
       $scope.placeToEditId = null;
@@ -38,7 +38,7 @@ angular.module('defyingGravityApp')
       }
 
       function deletePlace(id) {
-        PilotService.deletePlace(id);
+        PlacesService.deletePlace(id);
         updatePlaces();
         Notification.success('Address deleted');
       }
@@ -74,20 +74,19 @@ angular.module('defyingGravityApp')
 
       function save(id, address) {
         if (id) {
-          PilotService.editPlace(id, constructAddressObject(address));
+          PlacesService.editPlace(id, constructAddressObject(address));
           Notification.success('Place edited');
           $scope.placeToEditId = null;
         } else {
-          PilotService.addPlace(constructAddressObject(address));
+          PlacesService.addPlace(constructAddressObject(address));
           Notification.success('Place added');
         }
         resetAddress();
         updatePlaces();
-
       }
 
       function updatePlaces() {
-        PilotService.getCurrentUserPlaces().then(function(userPlaces) {
+        PlacesService.getCurrentUserPlaces().then(function(userPlaces) {
           $scope.userPlaces = userPlaces;
         });
       }

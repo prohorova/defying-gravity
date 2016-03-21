@@ -20,7 +20,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="header" ng-controller="UserController" ng-cloak>
+    <div class="header" ng-controller="UserController">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -40,9 +40,14 @@
             <ul class="nav navbar-nav">
               <li ui-sref-active="active"><a href ui-sref="pilots">Pilots</a></li>
               <li ui-sref-active="active"><a href ui-sref="about">About</a></li>
+              <li ui-sref-active="active" ng-if="isLoggedIn()">
+                <a href ui-sref="messages">Messages
+                  <span class="label label-primary">3</span>
+                </a>
+              </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li ng-hide="isLoggedIn()"><a href ng-click="openLoginModal()">Sign in</a></li>
+              <li ng-if="!isLoggedIn()"><a href ng-click="openLoginModal()">Sign in</a></li>
               <li ng-if="isLoggedIn()" class="dropdown user-preview">
                 <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <div class="avatar"><img ng-src={{userData.profileImgUrl}}></div>
@@ -60,7 +65,7 @@
       </div>
       <div class="navbar-info" ng-if="!isLoggedIn()">
         <div class="container text-center">
-          Sign in to add yourself to the map
+          Sign in to add yourself to the map or communicate with other users
         </div>
       </div>
     </div>
@@ -91,10 +96,11 @@
     <script src="scripts/services/constants.js"></script>
     <script src="scripts/services/firebaseService.js"></script>
     <script src="scripts/services/authService.js"></script>
-    <script src="scripts/services/userService.js"></script>
-    <script src="scripts/services/geolocationService.js"></script>
+    <script src="scripts/services/profileService.js"></script>
     <script src="scripts/services/googleMapService.js"></script>
-    <script src="scripts/services/pilotService.js"></script>
+    <script src="scripts/services/placesService.js"></script>
+    <script src="scripts/services/pilotsService.js"></script>
+    <script src="scripts/services/loginService.js"></script>
     <script src="scripts/controllers/loginController.js"></script>
     <script src="scripts/controllers/profileController.js"></script>
     <script src="scripts/controllers/userController.js"></script>

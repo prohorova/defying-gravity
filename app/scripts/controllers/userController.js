@@ -1,18 +1,14 @@
 'use strict';
 
 angular.module('defyingGravityApp')
-  .controller('UserController', function($scope, $modal, $timeout, AuthService, Notification) {
+  .controller('UserController', function($scope, AuthService, Notification, LoginService) {
 
     $scope.openLoginModal = openLoginModal;
     $scope.logout = logout;
     $scope.isLoggedIn = isLoggedIn;
 
     function openLoginModal() {
-      $modal.open({
-        size: 'sm',
-        templateUrl: 'views/login-modal.html',
-        controller: 'LoginController'
-      })
+      LoginService.openLoginWindow();
     }
 
     function logout() {

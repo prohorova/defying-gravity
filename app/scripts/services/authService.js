@@ -52,7 +52,7 @@ angular.module('defyingGravityApp')
     }
 
     function isLoggedIn() {
-      return !!userData;
+      return !!firebaseRef.getAuth();
     }
 
   });

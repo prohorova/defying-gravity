@@ -54,6 +54,11 @@ html, body {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);;
 }
 
+.navbar .label {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
 /* login */
 
 .login-form {
@@ -285,6 +290,11 @@ input.form-control, select.form-control {
 
 .places .add {
   vertical-align: bottom !important;
+}
+
+.send-message {
+  display: block;
+  margin-top: 5px;
 }
 
 /* about */

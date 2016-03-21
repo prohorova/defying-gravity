@@ -2,7 +2,7 @@
 
 angular.module('defyingGravityApp')
   .controller('ProfileController',
-    function($scope, types, aircraftCategories, UserService, Notification) {
+    function($scope, types, aircraftCategories, ProfileService, Notification) {
       var profile;
       $scope.types = types;
       $scope.aircraftCategories = aircraftCategories;
@@ -27,14 +27,16 @@ angular.module('defyingGravityApp')
       }
 
       function save(profile) {
-        UserService.updateUserProfile(profile).then(function() {
+        ProfileService.updateUserProfile(profile).then(function() {
           Notification.success('Profile successfully updated');
           updateProfile();
+        }, function() {
+          Notification.error('Could not update profile');
         });
       }
 
       function updateProfile() {
-        UserService.getCurrentUserProfile().then(function(data) {
+        ProfileService.getUserProfile().then(function(data) {
           profile = data;
           $scope.profile = angular.copy(profile);
         });

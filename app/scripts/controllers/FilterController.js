@@ -2,7 +2,7 @@
 
 angular.module('defyingGravityApp')
   .controller('FilterController',
-    function($scope, types, aircraftCategories, PilotService) {
+    function($scope, types, aircraftCategories, PilotsService) {
 
       $scope.types = types;
       $scope.aircraftCategories = aircraftCategories;
@@ -17,13 +17,13 @@ angular.module('defyingGravityApp')
 
       $scope.$watch('type', function(newVal, oldVal) {
         if (newVal !== oldVal) {
-          $scope.setPilots(PilotService.filterPilots($scope.type, $scope.category));
+          $scope.setPilots(PilotsService.filterPilots($scope.type, $scope.category));
         }
       });
 
       $scope.$watch('category', function(newVal, oldVal) {
         if (newVal !== oldVal) {
-          $scope.setPilots(PilotService.filterPilots($scope.type, $scope.category));
+          $scope.setPilots(PilotsService.filterPilots($scope.type, $scope.category));
         }
       });
     });
