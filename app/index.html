@@ -40,11 +40,6 @@
             <ul class="nav navbar-nav">
               <li ui-sref-active="active"><a href ui-sref="pilots">Pilots</a></li>
               <li ui-sref-active="active"><a href ui-sref="about">About</a></li>
-              <li ui-sref-active="active" ng-if="isLoggedIn()">
-                <a href ui-sref="messages">Messages
-                  <span class="label label-primary">3</span>
-                </a>
-              </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li ng-if="!isLoggedIn()"><a href ng-click="openLoginModal()">Sign in</a></li>
@@ -72,7 +67,7 @@
 
     <div class="container-fluid" ui-view></div>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo7xR4CJPGwAKNK4cr-IS5FzAZaJnPiQk&libraries=places,geometry"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1eu9HrGxewOvRxtAZQAeezkvCB7TanCk&libraries=places,geometry"></script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>

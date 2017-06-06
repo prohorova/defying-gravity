@@ -19,7 +19,8 @@ angular.module('defyingGravityApp')
 
         function addMarker(pilot) {
             var marker = new google.maps.Marker({
-                position: pilot.place.coords
+                position: pilot.place.coords,
+                icon: 'images/map-marker.png'
             });
             marker.addListener('click', function () {
                 if (!pilotMarkerInfoWindow) {
@@ -44,7 +45,14 @@ angular.module('defyingGravityApp')
                 zoom: 6,
                 mapTypeControl: false
             });
-            markerCluster = new MarkerClusterer(map);
+            markerCluster = new MarkerClusterer(map, [], {
+                styles: [{
+                    url: 'images/circle.png',
+                    width: 32,
+                    height: 32,
+                    textColor: '#fff'
+                }]
+            });
         }
 
         function createPilotMarkerInfoWindow() {
